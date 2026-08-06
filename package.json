@@ -1,0 +1,49 @@
+{
+  "name": "@gestione-casa/shared-sdk",
+  "version": "0.1.0",
+  "description": "Contratti e logica condivisa multipiattaforma per l'ecosistema Gestione Casa.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./licensing": {
+      "types": "./dist/licensing/index.d.ts",
+      "import": "./dist/licensing/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "tsx tools/workbench/server.ts",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "clean": "node -e \"import('node:fs').then(fs => fs.rmSync('dist', { recursive: true, force: true }))\"",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "pack:check": "npm pack --dry-run"
+  },
+  "keywords": [
+    "gestione-casa",
+    "typescript",
+    "sdk",
+    "license",
+    "cross-platform"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "express": "^5.2.1",
+    "tsx": "^4.23.9",
+    "typescript": "~5.8.2"
+  }
+}

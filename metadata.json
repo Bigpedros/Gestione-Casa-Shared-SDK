@@ -1,0 +1,6 @@
+{
+  "name": "Gestione Casa - Shared SDK",
+  "description": "Contratti e logica condivisa multipiattaforma per l'ecosistema Gestione Casa (Licenze, Validazione, Adapters).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
