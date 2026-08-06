@@ -2,16 +2,15 @@
 
 Pacchetto TypeScript condiviso tra **Gestione Casa OCR**, **Gestione Casa License Manager** e i futuri client Android, iOS, Windows e macOS.
 
-## Obiettivi della versione 0.2.0 (Fase 2.2)
+## Obiettivi della versione 0.3.0 (Sottofase 2.3.A)
 
-Nella versione 0.1.0 è stato consolidato il dominio delle licenze. La versione 0.2.0 introduce i tre modelli canonici condivisi dell'ecosistema Gestione Casa:
+La versione 0.3.0 introduce il **contratto canonico di scambio JSON** (`ContactRequestExchangeEnvelope`) per l'esportazione e l'importazione manuale delle richieste di contatto tra **Gestione Casa OCR** e **Gestione Casa License Manager**:
 
-1. **Licenze (`/licensing`)**: Generazione codici, formato `XXXX-XXXX-XXXX-XXXX`, checksum, scadenze, contratti Ed25519 e snapshots.
-2. **Clienti (`/customers`)**: Gestione unificata dei clienti (individuali e organizzazioni), validazione formale, pulizia dati e adapter per modelli legacy.
-3. **Richieste di Contatto (`/contact-requests`)**: Contratti e regole di validazione per richieste di supporto, attivazione, rinnovo e informazioni.
-4. **Utilità Condivise (`/common`)**: Tipi di sincronizzazione (`SyncStatus`), strutture di validazione (`ValidationResult`), normalizzazione stringhe/email/telefoni e verifica date ISO.
+1. **Envelope Canonico (`/contact-requests`)**: Contenitore formattato con formato `gestione-casa-contact-request`, versione `1`, `exportedAt` ISO 8601 e documento `ContactRequestDocument`.
+2. **API di Scambio Pure**: `createContactRequestExchangeEnvelope`, `validateContactRequestExchangeEnvelope`, `serializeContactRequestExchangeEnvelope`, `deserializeContactRequestExchangeEnvelope` e `buildContactRequestExchangeFileName`.
+3. **Nome File Deterministico**: Formato congelato `gestione-casa-contact-request_<ID>_<YYYYMMDD-HHmmss>.json` senza PII.
 
-Lo SDK **non contiene** React, Dexie, IndexedDB, UI, API server, invio email o logica specifica di una singola piattaforma. Definisce esclusivamente i contratti e i validator.
+Lo SDK **non contiene** React, Dexie, IndexedDB, UI, API server, invio email o logica specifica di una singola piattaforma. Definisce esclusivamente i contratti e le funzioni pure di validazione e scambio.
 
 ## Struttura
 
@@ -38,6 +37,8 @@ src/
   contact-requests/
     types.ts
     ContactRequestValidator.ts
+    exchange.types.ts
+    exchange.ts
     index.ts
 ```
 
@@ -96,6 +97,7 @@ Consultare:
 
 - `docs/ARCHITECTURE.md`
 - `docs/PHASE_2_2_SHARED_MODELS.md`
+- `docs/PHASE_2_3_CONTACT_REQUEST_EXCHANGE.md`
 - `docs/INTEGRATION_LICENSE_MANAGER.md`
 - `docs/INTEGRATION_OCR.md`
 - `docs/MIGRATION_MATRIX.md`

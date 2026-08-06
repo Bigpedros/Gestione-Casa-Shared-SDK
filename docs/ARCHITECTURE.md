@@ -24,8 +24,9 @@ Lo SDK definisce i contratti per tre entità fondamentali dell'ecosistema:
 
 ## Confini Operativi
 
-- **Fase 2.2**: Definizione contratti, validator, adapter e utilità condivise.
-- **Fase 2.3**: Integrazione concreta di `CustomerDocument` e `ContactRequestDocument` nelle due applicazioni Gestione Casa.
+- **Fase 2.2**: Definizione contratti, validator, adapter e utilità condivise per Licenze, Clienti e Richieste.
+- **Sottofase 2.3.A**: Contratto canonico di scambio JSON (`ContactRequestExchangeEnvelope`) e API pure di validazione, serializzazione e naming per lo scambio manuale OCR ↔ License Manager.
+- **Fase 2.3 (Completamento)**: Integrazione concreta dei modelli nei database Dexie e nelle UI delle due applicazioni.
 - **Fase 2.4**: Implementazione del workflow operativo automatizzato (Richiesta → Cliente → Licenza).
 
 ## Sicurezza

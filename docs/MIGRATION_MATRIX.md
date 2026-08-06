@@ -7,6 +7,7 @@
 | Tipi canonici licenza (`LicenseDocument`) | Sì | Consuma | Consuma |
 | Modello canonico cliente (`CustomerDocument`) | Sì | Consuma (Fase 2.3) | Consuma (Fase 2.3) |
 | Modello richiesta contatto (`ContactRequestDocument`) | Sì | Consuma (Fase 2.3) | Consuma (Fase 2.3) |
+| Contratto di scambio JSON richieste (`ContactRequestExchangeEnvelope`) | Sì (v0.3.0) | Consuma (Fase 2.3) | Consuma (Fase 2.3) |
 | Validator e normalizzatori | Sì | Consuma | Consuma |
 | Calcolo scadenze e utilità date | Sì | Consuma | Consuma |
 | Adapter legacy cliente | Sì | Consuma | No |

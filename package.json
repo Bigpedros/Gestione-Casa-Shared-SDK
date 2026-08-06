@@ -1,6 +1,6 @@
 {
   "name": "@gestione-casa/shared-sdk",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Contratti e logica condivisa multipiattaforma per l'ecosistema Gestione Casa.",
   "type": "module",
   "main": "./dist/index.js",
