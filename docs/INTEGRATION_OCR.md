@@ -1,31 +1,35 @@
 # Integrazione con Gestione Casa OCR
 
-## Prima migrazione
+## Stato integrazione (Fase 2.2)
 
-1. Aggiungere `@gestione-casa/shared-sdk` alle dipendenze.
-2. Conservare `LicenseContext`, hook e persistenza locale nell'app.
-3. Sostituire tipi, calcolo scadenze e validazione con lo SDK.
-4. Migrare gradualmente il record locale legacy verso `ClientLicenseSnapshot`.
-5. Usare `legacyAppRecordToSnapshot` soltanto come ponte temporaneo.
+Nella versione 0.2.0 dello Shared SDK sono disponibili i modelli `CustomerDocument` e `ContactRequestDocument` da integrare nei moduli di Gestione Casa OCR.
 
-## File interessati
+### Utilizzo previsto in Gestione Casa OCR:
 
-- `src/types/license.ts`
-- `src/services/licenseService.ts`
-- `src/context/LicenseContext.tsx`
-- `src/tests/license-architecture.test.ts`
+1. **Invio e tracciamento richieste**: Gestione Casa OCR può generare richieste di supporto, attivazione o licenza conformi a `ContactRequestDocument` con validazione tramite `ContactRequestValidator`.
+2. **Profilo utente / cliente locale**: Il profilo utente registrato o salvato nell'app client seguirà la struttura `CustomerDocument`.
+3. **Persistenza locale**: L'app conserverà il suo database Dexie/IndexedDB per memorizzare le richieste e i dati utente.
 
-## Import suggerito
+### Import suggeriti:
 
 ```ts
 import {
-  deserializeClientLicense,
   evaluateLicense,
-  legacyAppRecordToSnapshot,
-  serializeClientLicense,
+  deserializeClientLicense,
 } from '@gestione-casa/shared-sdk/licensing';
+
+import {
+  ContactRequestValidator,
+  type ContactRequestDocument,
+} from '@gestione-casa/shared-sdk/contact-requests';
+
+import {
+  CustomerValidator,
+  type CustomerDocument,
+} from '@gestione-casa/shared-sdk/customers';
 ```
 
-## Nota
+### Prossimi passaggi:
+- **Fase 2.3**: Sostituzione graduale delle interfacce locali in Gestione Casa OCR con i tipi condivisi dello SDK.
+- **Fase 2.4**: Allineamento delle API e form di invio richieste per la conversione automatica lato manager.
 
-I vecchi identificativi come `LIC-BETA-2026` non rispettano il nuovo formato con checksum. Durante la migrazione vanno considerati record legacy e sostituiti con codici generati dal License Manager.

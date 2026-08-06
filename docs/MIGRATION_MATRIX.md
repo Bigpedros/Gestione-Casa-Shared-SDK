@@ -2,19 +2,20 @@
 
 | Responsabilità | Shared SDK | License Manager | Gestione Casa OCR |
 |---|---:|---:|---:|
-| Formato e checksum codice | Sì | No | No |
-| Generazione codice | Sì | Consuma | No |
-| Tipi canonici licenza | Sì | Consuma | Consuma |
-| Calcolo scadenza | Sì | Consuma | Consuma |
-| Firma privata futura | Contratto | Implementa | Mai |
-| Verifica firma futura | Contratto | Facoltativa | Implementa |
-| Database Dexie | No | Sì | Sì |
-| Repository dati | No | Sì | Sì |
-| React/context/UI | No | Sì | Sì |
-| Attivazione remota/API | Contratti futuri | Server/autore | Client |
-| OCR e classificazione prodotti | No, per ora | No | Sì |
-| Notifiche ed email | Solo contratti futuri | No | Sì |
+| Formato e checksum codice licenza | Sì | No | No |
+| Generazione codice licenza | Sì | Consuma | No |
+| Tipi canonici licenza (`LicenseDocument`) | Sì | Consuma | Consuma |
+| Modello canonico cliente (`CustomerDocument`) | Sì | Consuma (Fase 2.3) | Consuma (Fase 2.3) |
+| Modello richiesta contatto (`ContactRequestDocument`) | Sì | Consuma (Fase 2.3) | Consuma (Fase 2.3) |
+| Validator e normalizzatori | Sì | Consuma | Consuma |
+| Calcolo scadenze e utilità date | Sì | Consuma | Consuma |
+| Adapter legacy cliente | Sì | Consuma | No |
+| Database Dexie e schemi locale | No | Sì | Sì |
+| Repository e persistenze | No | Sì | Sì |
+| React UI e form | No | Sì | Sì |
+| Workflow transizionale (Richiesta → Cliente → Licenza) | Solo contratti | Implementa (Fase 2.4) | Consuma (Fase 2.4) |
 
 ## Scelta di perimetro
 
-OCR, budget, report e notifiche non vengono trasferiti nella versione 0.1.0 perché non sono attualmente condivisi con il License Manager. Saranno estratti solo quando esisterà almeno un secondo consumatore reale, evitando di trasformare lo SDK in un duplicato dell'app principale.
+Nella Fase 2.2 lo Shared SDK definisce i contratti, i tipi e le regole di validazione per `LicenseDocument`, `CustomerDocument` e `ContactRequestDocument`. La gestione concreta dei dati nel database (Dexie/IndexedDB) e l'interfaccia utente rimangono responsabilità delle singole applicazioni.
+

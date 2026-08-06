@@ -1,22 +1,10 @@
 # Integrazione con Gestione Casa License Manager
 
-## Prima migrazione
+## Stato integrazione (Fase 2.2)
 
-1. Aggiungere `@gestione-casa/shared-sdk` alle dipendenze.
-2. Sostituire gli import da `src/engine` con gli import dal pacchetto.
-3. Mantenere Dexie, repository e servizi nel License Manager.
-4. Aggiungere alla tabella licenze un campo `term` distinto da `licenseType`.
-5. Conservare `licenseType` solo come edizione commerciale durante la migrazione.
+Nella versione 0.2.0 dello Shared SDK sono stati messi a disposizione i contratti e gli adattatori per i clienti e le richieste di contatto.
 
-## File che possono essere rimossi dopo il passaggio
-
-- `src/engine/LicenseValidator.ts`
-- la parte di generazione codice di `src/engine/LicenseEngine.ts`
-- `src/engine/types.ts` per i tipi già coperti dallo SDK
-
-Le funzioni di analisi collegate al database e i preparatori per sync possono restare nel License Manager, perché dipendono dal suo modello applicativo.
-
-## Import suggerito
+### Nuove esportazioni disponibili per il License Manager:
 
 ```ts
 import {
@@ -24,4 +12,26 @@ import {
   LicenseValidator,
   managerEntityToDocument,
 } from '@gestione-casa/shared-sdk/licensing';
+
+import {
+  CustomerValidator,
+  managerCustomerEntityToDocument,
+} from '@gestione-casa/shared-sdk/customers';
+
+import {
+  ContactRequestValidator,
+} from '@gestione-casa/shared-sdk/contact-requests';
 ```
+
+### Note sull'adattatore cliente:
+
+- `managerCustomerEntityToDocument(record)` converte la struttura cliente del License Manager nel documento canonico `CustomerDocument`.
+- Supporta gli stati nativi (`pending`, `active`, `suspended`, `archived`) e gli alias UI legacy (`da_attivare`, `attivo`, `sospeso`, `revocato`).
+- La proprietà legacy `licenseCode` eventualmente presente nel record cliente non viene inserita nel modello `CustomerDocument`, ma viene conservata temporaneamente in `metadata.legacyLicenseCode`.
+- Il collegamento ufficiale tra cliente e licenza deve avvenire tramite `LicenseDocument.customerId`.
+
+### Prossimi passaggi (Fase 2.3 e Fase 2.4):
+
+- **Fase 2.3**: Sostituzione delle interfacce locali clienti e richieste nel License Manager con i tipi condivisi dallo SDK.
+- **Fase 2.4**: Implementazione della logica di conversione e associazione (Richiesta → Cliente → Licenza).
+

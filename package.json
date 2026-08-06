@@ -1,6 +1,6 @@
 {
   "name": "@gestione-casa/shared-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Contratti e logica condivisa multipiattaforma per l'ecosistema Gestione Casa.",
   "type": "module",
   "main": "./dist/index.js",
@@ -8,11 +8,28 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./licensing": {
       "types": "./dist/licensing/index.d.ts",
-      "import": "./dist/licensing/index.js"
+      "import": "./dist/licensing/index.js",
+      "default": "./dist/licensing/index.js"
+    },
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "import": "./dist/common/index.js",
+      "default": "./dist/common/index.js"
+    },
+    "./customers": {
+      "types": "./dist/customers/index.d.ts",
+      "import": "./dist/customers/index.js",
+      "default": "./dist/customers/index.js"
+    },
+    "./contact-requests": {
+      "types": "./dist/contact-requests/index.d.ts",
+      "import": "./dist/contact-requests/index.js",
+      "default": "./dist/contact-requests/index.js"
     }
   },
   "files": [
