@@ -15,6 +15,8 @@
 | Repository e persistenze | No | Sì | Sì |
 | React UI e form | No | Sì | Sì |
 | Workflow transizionale (Richiesta → Cliente → Licenza) | Solo contratti | Implementa (Fase 2.4) | Consuma (Fase 2.4) |
+| Contratti attivazione online (`ActivationRequest`, `ActivationResponse`, envelopes) | Sì (Fase 2.6.B1) | Consuma (Fase 2.6) | Consuma (Fase 2.6) |
+| Licenza firmata e payload canonico v1 (`SignedLicenseDocument`, `buildCanonicalLicensePayloadV1`) | Sì (Fase 2.6.B1) | Consuma / Firma | Consuma / Verifica |
 
 ## Scelta di perimetro
 
